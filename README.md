@@ -19,6 +19,8 @@ The following steps **must** be done prior to the first lesson.
 
 ### Session
 
+In this lesson you will learn how to meet the other students and communicate with the community using Slack, get familiar with GitHub, and write your first program in Java.
+
 1. Introduction to Slack.
     1. Install and join workspace
     1. Ask for help in the `#help` channel
@@ -41,4 +43,17 @@ The following steps **must** be done prior to the first lesson.
 
 ## Lesson 2
 
+### Session
 
+1. Getting comfortable with using the command line.
+1. Conditionals
+1. Data types and variables
+1. String concatenation
+
+### Homework
+
+This homework expands upon the hello world from previous lesson.
+
+1. Create variables of each type, and print strings when certain conditions are met
+1. Create nested if statements
+1. Simplify a given set of nested if-statements
