@@ -43,6 +43,8 @@ In this lesson you will learn how to meet the other students and communicate wit
 
 ## Lesson 2
 
+In this lesson we'll introduce the command line as a tool for.
+
 ### Session
 
 1. Getting comfortable with using the command line.
@@ -57,3 +59,23 @@ This homework expands upon the hello world from previous lesson.
 1. Create variables of each type, and print strings when certain conditions are met
 1. Create nested if statements
 1. Simplify a given set of nested if-statements
+
+Practice your command line skills:
+
+1. Read [this blog post](https://kinbiko.com/shell/basic-bash-commands/) to make sure you've got the basics of working in the command line covered.
+
+## Lesson 3
+
+### Session
+
+1. Logical `and`, `or`, `not` and `not equal`.
+1. Classes and objects (theory)
+
+### Homework
+
+1. Simplify the code from last week's homework even more by using `&&`, `||` and `!`
+1. Look at any relatively complex item in your surroundings. How would you describe it in OOP as an object with methods and properties? Be as detailed as you can.
+
+## Lesson 4
+### Session
+### Homework
