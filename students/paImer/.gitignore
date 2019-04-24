@@ -1,0 +1,11 @@
+pe/out
+pe/.idea
+classroom/out
+classroom/.idea
+farm/.idea
+farm/out
+introduction-to-testing/out
+introduction-to-testing/.idea
+*.class
+generics/.idea
+exceptions/.idea
