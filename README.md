@@ -28,8 +28,8 @@ In order to keep track of what I'm teaching (and not teaching) everyone however,
 This is what the ["Topics" project](https://github.com/kinbiko/mentoring/projects/1) is for.
 I have organised this project into the following categories (columns):
 
-|Category|Description|
-----------------------
+| Category | Description |
+| -------- | ----------- |
 | Java | The canonical object oriented programming language. The primary programming language taught in my sessions. |
 | Git | Probably the most popular developer tool in the world. |
 | Shell | Mastering the command line is a key skill for efficient development. |
