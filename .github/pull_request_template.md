@@ -8,7 +8,7 @@ https://github.com/kinbiko/mentoring/blob/master/lessons/pull-requests-and-peer-
 -->
 
 - [ ] I have done a self-review before requesting a review from someone else.
-- [ ] I believe the PR should not be brokend down into smaller PRs as it regards only one piece of work.
+- [ ] I believe the PR should not be broken down into smaller PRs as it regards only one piece of work.
 - [ ] I have provided a good title and description.
 - [ ] I have raised any questions in Slack instead of in the PR or in comments in code.
 - [ ] I have assigned a reviewer I believe has the background information needed to review this.
