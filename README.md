@@ -25,3 +25,24 @@ If we have already gone over a topic in our lessons that someone else is request
 If nobody has volunteered as a reviewer for your PR within 24 hours I will assign one based on my judgement of who I think would be a good fit.
 I might assign you as a reviewer even if you have no knowledge of the topic.
 This is common in industry as well -- there's always a first person on the team to learn something new.
+
+## Organisation
+
+I believe in adopting a malleable syllabus and lesson plan according to each individual student.
+Although a lot of the same content is taught to everyone, each student takes a different route, and might skip certain bits entirely and dive deeper into some topics than other students have.
+In order to keep track of what I'm teaching (and not teaching) everyone however, I have found it necessary to start tracking this.
+This is what the "Topics" project is for.
+I have organised this project into the following categories (columns):
+
+|Category|Description|
+----------------------
+| Java | The canonical object oriented programming language. The introductory programming language taught in my sessions. |
+| Git | Probably the most popular developer tool in the world. |
+| Shell | Mastering the command line is a key skill for efficient development. |
+| Theory and practices | Software Engineering/Computer Science/IT topics that are programming language, and occasionally even programming, agnostic. |
+| Data & databases | Got information about something? You probably want to store this data in a database. |
+| Frontend development | Topics relating to client side web development, such as HTML, CSS and JavaScript. |
+| Devops and cloud development | Topics relating to CI/CD, Docker, Kubernetes, and modern cloud practices. |
+| Developer culture | The internet was made by developers. This category is about the online resources, tech and geek culture (good and bad) surrounding the software industry. |
+| Potential alternative paths | This category contains introductory topics that I may consider making entire categories out of. A student will have to be very mature in Java, Git, Shell, and Theory before I consider making a category out of one of these topics. |
+| Suggestion box | Suggestion box for topics to cover in our sessions (cards only, not issues) |
