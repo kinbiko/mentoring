@@ -31,7 +31,7 @@ I have organised this project into the following categories (columns):
 | Category | Description |
 | -------- | ----------- |
 | Java | The canonical object oriented programming language. The primary programming language taught in my sessions. |
-| Git | Probably the most popular developer tool in the world. |
+| Git | For versioning your files. Probably the most popular developer tool in the world. |
 | Shell | Mastering the command line is a key skill for efficient development. |
 | Theory and practices | Software Engineering/Computer Science/IT topics that are programming language, and occasionally even programming, agnostic. |
 | Data & databases | Got information about something? You probably want to store this data in a database. |
@@ -47,7 +47,6 @@ Please make these **knowledge topics**, as opposed to chores that we had to do (
 ### Per-student boards
 
 Each student has a project board named after their GitHub username.
-I've introduced these types of boards to all my students, but unfortunately, due to the coupling of repositories to projects it has become too difficult for me to keep track of what's in flight with each student at any given point.
 These boards are here to centralise this information.
 These boards should consist of cards -- **not GitHub issues** -- with descriptions and links to relevant PRs and issues.
 E.g. if you're learning about TDD and are submitting a TDD exercise in Java under PR number `#523` then you should tag the card with `#523` (The PR), `#132` (TDD in Java issue) and `#38` (TDD theory issue).
