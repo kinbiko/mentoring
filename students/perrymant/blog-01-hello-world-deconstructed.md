@@ -63,7 +63,7 @@ So with our `Frog` and `Fly` classes, the file and class structure will look lik
 I've taken the liberty to give the `Frog` the attribute of two `eyes`, and I've given the `Fly` the `irritateHuman()` behaviour.
 So you see how each class is contained in its own file, and the class and filename are the same.
 This is useful because it keeps everything that is specific to the `Frog` in one place, and everything that is specific to the `Fly` in it's own place, which can help us out in the long run by making our overall program more navigatable and readable.
-This concept is refered to as `encapsulation`, allowing these related ideas to be put together into one unit.
+This concept is refered to as `encapsulation`, allowing these related ideas to be put together into one unit, and thereby preventing unrelated things from having access.
 ![Modifiers](assets/blog-01-hello-world-deconstructed/encapsulate.jpg)
 This image shows multiple levels of encapsulation: the powered medicine is encapsulated in the pill, and the pills are encapsulated in the pill bottle - the encapsulation helps keep the things that belong together together.
 
@@ -99,11 +99,11 @@ So it's OK to have other classes in the file, just as long as they have a differ
 ```
 #### 2. `protected` access modifier
 
-The `protected` access modifier can't actually be applied to classes, but it can be used with methods, constructors and data members, so we'll look at it here, and start by understanding how we organise classes in packages and files.
+The `protected` access modifier is typically used with methods, constructors and data members rather than classes, but we'll look at it here, and start by understanding how we organise classes in packages and files.
 
 The way we organise our classes is through files, packages and folders.
 We've already seen how .java files contain the classes, and you're probably familiar with folders (or directories) because your computer's Operating System uses these to create a hierarchy for storing files.
-Packages are exactly the same as folders, with the only difference being that they are the folders within the `src` folder:
+Packages are exactly the same as folders, with the only difference being that they are the folders relative to the sourcepath (Java-speak for what's usually the `src` or `src/main/java` folder):
 ```java
 Documents
 └── pizzeria                                <- folder
@@ -134,9 +134,17 @@ Typically you will see these in a format that has one or more identifiers separa
 The naming format here is trying to make sure that each name is unique, so as to avoid namespace collisions and is the same as with import naming.
 For example, if I wanted to make use of the class `List`, I would find that there are quite a few:
 ![Namespace](assets/blog-01-hello-world-deconstructed/namespace.png)
-*which one do I want?* I have to specify, and this reversed naming format helps keep all of these classes and packages separate.
+*which one do I want?* I have to specify, and this `java.util.list` naming format helps keep all of these classes and packages separate, ensuring we can make use of the desired class.
 
-When the `protected` access modifier is used, it signals that the method, constructors or data member is accessible both within and outside the package but through inheritance only.
+When the `protected` access modifier is used, it signals that the class, method, constructors or data member is accessible both within and outside the package but through inheritance only.
+As mentioned above, the `protected` access modifier is normally not used with class, but can be with nested classes. E.g.
+```java
+public class Foo {
+    protected class Bar {
+        // this is OK
+    }
+}
+```
 
 #### 3. `package private` access modifier
 
@@ -207,8 +215,9 @@ We can summarise by saying that `void` is the absence of a return type.
 ## Term 7: The `main` method
 
  In order to run a program, the JVM requires an entry point, or starting point.
- The `main` method is the entry point for this Java program.
+ The `main` method is the entry point for this Java program - the class itself doesn't need to be called `Main`, but in attempting to compile and run your code the Java Virtual Machine (JVM) seeks out a `main` method if the program is run from the Command Line.
  You would not be able to start the HelloWorld program if you renamed this method to anything other that `main` - it is that crucial for the JVM.
+
 
 ## Term 8: The `argument type`
 
