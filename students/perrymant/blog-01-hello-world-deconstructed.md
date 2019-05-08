@@ -127,7 +127,9 @@ Documents
 ```
 Packages are used for organising related classes, and to put a class in a package, you need to add the line
 
-`package `*packagename*`;`
+```java
+package packagename;
+```
 
 as the very first instruction in the source file.
 Typically you will see these in a format that has one or more identifiers separated by periods such as `java.util.random`.
@@ -171,19 +173,24 @@ A field or method that is marked as private will only allow code inside the same
 This means that code inside subclasses or external classes cannot access the fields or methods that are designated as `private`.
 
 ```java
-+-----------------TronaldDump.java-----------------+
-|                                                  |
-|    private String thoughts = "";                 |
-|                                                  |
-|    public String getThoughts() {                 |
-|        return thoughts;                          |
-|    }                                             |
-|                                                  |
-|    public void setThoughts(String thoughts) {    |
-|        this.thoughts = thoughts;                 |
-|    }                                             |
-|                                                  |
-+--------------------------------------------------+
++-----------------------TronaldDump.java-----------------------+
+|                                                              |
+|    private String thoughts = "";                             |
+|    private String intentions = "make collusion great again"; |
+|                                                              |
+|    public String getThoughts() {                             |
+|        return thoughts;                                      |
+|    }                                                         |
+|                                                              |
+|    public void setThoughts(String thoughts) {                |
+|        this.thoughts = thoughts;                             |
+|    }                                                         |
+|                                                              |
+|    public String getIntentions() {                           |
+|        return "NO COLLUSION!!!!!";                           |
+|    }                                                         |
+|                                                              |
++--------------------------------------------------------------+
 ```
 
 Note that you can't make your Main class private as it would render it inaccessible, preventing the program from having an entrypoint and making it unuseable.
