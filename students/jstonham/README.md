@@ -2534,6 +2534,10 @@ Interpreted languages convert source code line-by-line into machine code.
 
 Compiled languages are faster to execute as the source code will have already been turned into machine code whilst it is being developed.
 
+Generally, programmers would use Compiled languages if having faster production code was more important and Interpreted languages if developing code faster was more important. However, factors like the following would also be considered when deciding which language is best for a particular project:
+- Which languages are known best by the programming team.
+- Which languages have an existing structure in place that can be utilised for the current project.
+
 Some languages have benefits of both compiled and interpreted languages, but on the whole fit into one category better, as with some of the below examples:
 
 | Compiled | Interpreted |
@@ -2542,6 +2546,8 @@ Some languages have benefits of both compiled and interpreted languages, but on 
 |    Go    |   Python    |
 |    C     | JavaScript  |
 | C# (to bytecode) | Bash |
+| C++ | CoffeeScript |
+| Kotlin | PHP |
 
 ## Databases and Indices
 
@@ -2619,3 +2625,131 @@ React is a JavaScript library for building user interfaces. It takes the backend
 Gatsby JavaScript Framework is a tool based on React that builds websites using only static files, which increases the speed the user can navigate through the resulting interface.
 
 Node.js provides the ability for programmers to write web servers using JavaScript. Node Package Manager (NPM) is a command line interface for managing node modules (a way of getting node applications such as VS Code and Atom).
+
+## A Simple Guide to How the Internet Works
+
+Clients (machines such as computers or web servers) send requests to web servers (program or computer running program that is responding to the request) via a connection between their two ports.
+
+### HyperText Transfer Protocol (HTTP)
+
+The client to web server and back communications take the form of protocols, which are built on top of the Internet Protocol. Two of the more commonly known protocols are HyperText Transfer Protocol (HTTP) and HyperText Transfer Protocol Secure (HTTPS). HTTPS is HTTP with a layer of encryptions, which come from a Secure Socket Layer (SSL).
+
+HTTP and HTTPS always consist of a header and, depending on the method called, can also contain a body. The body can be written in JSON, HTML, JavaScript, CSS, XML etc.
+
+#### Key HTTP Methods
+
+- `GET` - Client asks web server for data.
+- `POST` - Client sends data to web server.
+- `PUT` - Client requests that web server updates data (client sends entirety of data).
+- `PATCH` - Client requests that web server updates specific data (client only sends relevant data).
+- `DELETE` - Client requests that web server deletes data.
+
+Web servers are not required to follow these methods, and can use methods (e.g. `PUT`) to action something else.
+
+When sent from the client, methods such as `POST`, `PUT` and `PATCH` always consist of a header and a body (as the client needs to send the web server the data it wants to add or update).
+
+The `GET` method should not have a body when sent from the client as additional information can be included in the Uniform Resource Locator (URL).
+
+The body is sometimes referred to as the payload. The responses from the web server will typically have a body.
+
+The sender will specify how many bytes the body consists of. Generally each character is one byte, although some characters e.g. Chinese characters could be more than one byte. If the body received contains a smaller or larger number of bytes, then the receiver knows that the content could have been corrupted.
+
+### HTTP Status Codes
+
+HTTP status codes are all 3 digits long. More commonly known ones are `200` - 'OK', `202` - 'Accepted' and `404` - 'Data Not Found'.
+
+When they begin with the following numbers, status codes mean:
+
+- `1..` = hang on
+- `2..` = ok
+- `3..` = redirecting
+- `4..` = user messed up
+- `5..` = server messed up
+
+### Uniform Resource Locator (URL)
+
+The client to web server communications are enabled by web browsers. Web browsers are software applications with Graphical User Interfaces (GUIs) that take the request made by the person/computer and retrieve it from a web server using a Uniform Resource Locator (URL).
+
+URLs are signposts to web servers and usually consist of domains, resources and query parameters.
+
+The URL `https://www.amazon.com` is in the form of HTTPS and consists of three domains. `www` is a sub-domain of the `amazon` domain and `com` is the top level domain. It's in the interest of companies to purchase a domain name with their brand name, and they will often try to purchase under as many top-level domains (such as <company>.com & <company>.io, and regional domains such as <company>.co.uk) as possible so they can re-direct all potential customers to their main site.
+
+The following is part of a URL of a Google search for cat videos:
+
+`https://www.google.com/search?client=ubuntu&channel=fs&ei=0Bq7XNmKEsj8kwXDyaC4Bg&q=cat+videos`
+
+It is in the form of HTTPS, with a sub-domain of `www`, a domain of `google` and a top level domain of `com`.
+
+This URL also has a resource and query parameters. The resource is `search`. Resources consist of nouns and/or IDs and always follow on straight after the domains.
+
+The query parameters begin with `?` and are added to with `&`. Query parameters consist of key to value relationships that are created with the `=` sign. In the URL above, there are 4 query parameters:
+
+| Key | Value |
+| --- | ----- |
+| client | ubuntu |
+| channel | fs |
+| ei | 0Bq7XNmKEsj8kwXDyaC4Bg |
+| q | cat+videos |
+
+Resources and query parameters are useful for telling the web server what the client wants, especially if the method used does not contain a body e.g. `GET`.
+
+URL query parameters will sometimes contain Urchin Tracking Module (UTM) codes. UTM codes are used by Google Analytics to track the success of advertising campaigns. When a client using a web browser selects a link that redirects them to another site, the UTM codes can record the source location, the location the client is redirected to, the type of marketing of the link and the keywords used in the search.
+
+### Examples of Top Level Domains (TLDs)
+
+- `.com` - Used by a lot of American web sites. Generally considered to be the best.
+- `.co.uk` - `.co` is for companies and in this case UK companies.
+- `.org` - Used by organisations.
+- `.gov` - Used by government organisations.
+- `.io` - Originally a country code for the British Indian Ocean Territory. Has become popular with start-up tech companies as the `io` can also stand for input/output.
+- `.no` - Used by Norwegian web sites.
+- `.net` - Originally one of the cheaper TLDs so generally used by the less reputable sites.
+- `.ru` - Used by Russian web sites.
+
+### IP Addresses
+
+Internet Protocol (IP) addresses are numbers assigned to each device which is connected to a computer network that uses the Internet Protocol for communication. IP addresses serve two main functions:
+
+1. Resource identification within the network.
+1. Providing a location for transferring data.
+
+The IP address of a computer is known as the `Host`. The `Local Host` is an IP address that will always take you to your computer: `127.0.0.1`.
+
+IP version 4 addresses take the form of four sets of numbers that are separated by full stops, as in the example below:
+
+`120.34.167.89`
+
+The first number has to be between 1 - 255 and the last three have to be between 0 - 255.
+
+Ports can be added in combination with IP addresses to tell web servers where on a computer to look for the information.
+
+Ports are added on the end, after a `:`, as in the example below:
+
+`120.34.167.89:443`
+
+The port `443` always denotes a secure port. The HTTP port is `80` and the HTTPS port is `443`.
+
+The current IP versions are 4 and 6. IPv4 uses a 32-bit address scheme allowing for a total of 2<sup>32</sup> addresses (just over 4 billion addresses). With all devices that access the internet requiring IP addresses,  IPv4 does not have enough addresses. As a work-around, some IP addresses will take you to a network which will then have to forward the request on to the correct server.
+
+IPv6 uses a 128-bit address scheme allowing for a total of 2<sup>128</sup> addresses. IPv6 addresses consist of [hexadecimal numbers](https://en.wikipedia.org/wiki/Hexadecimal) (0-9, then a-f for 16 different values) and are separated by colons e.g. `3ffe:1900:4545:3:200:f8ff:fe21:67cf`.
+
+Whilst devices need IP addresses to find locations, domains are more memorable for the people using them. Domain Name Servers (DNS) work as the internet's phone book, translating domains into IP addresses.
+
+### How to Set Up a Website
+
+To set up a website, you would buy a domain name. Then you would use DNS to link the domain name to your IP address. Then wait 24 hours for the changes to take effect. Remember to clear your cache history or your computer will keep taking you to the wrong location!
+
+### REpresentational State Transfer (REST)
+
+REpresentational State Transfer (REST), is an architectural style that makes it easier for computer systems to communicate with each other via the web. Computer systems that use this style, often called RESTful systems, are stateless. This means that they support the separation of the concerns of client and the web server so that neither needs to know the state of the other in order to communicate. There are many benefits of statelessness, including:
+
+- The code of the client or web server can be changed at any time without affecting the behaviour of the other.
+- Different clients can request the same data at once and receive the same responses.
+
+### Other Key Terms
+
+Cookies
+- Cookies are Strings. They are stored in the browser and can remember information such as usernames and passwords. Cookies are generally encrypted.
+
+Bandwidth
+- Bandwidth measures volume of data in bits per second.
