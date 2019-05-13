@@ -3,7 +3,7 @@
 ## Session 30 (16/04/2019)
 
 - Reviewing sprint project (issue) tasks and solving problems and feedback
-- Reviewing main project tasks and planning next Sprint
+- Reviewing main project tasks and planning next sprint
 
 ## Notes
 
@@ -20,18 +20,19 @@ In controller test, we removed these annotations because they are used when we'r
 @SpringBootTest
 ```
 
-Integration Tests run the entire application and because that, take more time to run while Unit Test are just loading Junit which usually takes less than 1 sec. Unit test are used to simulate classes of which depends what is being tested. 
+Integration Tests run the entire application and because of that, take more time to run while Unit Test are just loading Junit which usually takes less than 1 sec. Unit test are used to simulate classes of which depends what is being tested. 
 
-As we are creating unit tests, we don't need to load all Spring machinery, we just need to test the portion of code are our interest and for that we mock the dependencies by using Mockito.
+As we are creating unit tests, we don't need to load all Spring machinery, we just need to test the portion of code of interest and for that we mock the dependencies by using Mockito.
 
-The purpose of Mockito is to allow us to test without need to implement anything else in the server side, so we define which answer we want to git into each specific method of class we're mocking.
+The purpose of Mockito is to allow us to test without need to implement anything else in the server side, so we define which answer we want to get into each specific method of class we're mocking.
 
 ####  TDD
-During all session we were using TDD, first red, after green and then refactor where we were removing repetitions,  importing statically`Assets`, setting inline variables, and making variables repeated values, reformating code, etc.
+
+During all session we were using TDD, first red, after green and then refactor where we were removing repetitions,  importing statically `Assets`, setting inline variables, and making variables repeated values, reformatting code, etc.
 
 Some examples of this are:
 
-Service variable name was renamed to`target` since it is widely used:
+Service variable name was renamed to `target` since it is widely used:
 
 ```java
 private AccountRepository mockRepo = Mockito.mock(AccountRepository.class);
@@ -54,7 +55,6 @@ public void whenNotDataInDBReturnEmptyJSON() {
     when(mockRepo.findAll()).thenReturn(new ArrayList<>());
     ListAccountsResponse response = target.listAccounts();
     assertEquals(0, response.getData().size());
-
 }
 ```
 
@@ -88,9 +88,7 @@ The `L` letter means value is converted to `Long`. This also works with lowercas
 
 More test can be done in service, but with what we completed in this session, test to method `listAccounts()` was ready and in the expected shake.
 
-
 #### Database
-
 
 About database, in `build.gradle` we setted:
 
