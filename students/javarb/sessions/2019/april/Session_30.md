@@ -103,4 +103,3 @@ Also, I was declaring environmental variables, but they are only needed when run
 ### Homework
 
 - To do the [](https://github.com/javarb/wallet/issues/) tasks as defined in the [project issue board](https://github.com/javarb/wallet/projects/)
-
