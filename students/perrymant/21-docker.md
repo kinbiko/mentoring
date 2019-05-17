@@ -2,37 +2,84 @@
 
 > Docker runs processes in isolated containers. A container is a process which runs on a host. The host may be local or remote. When an operator executes docker run, the container process that runs is isolated in that it has its own file system, its own networking, and its own isolated process tree separate from the host. - [Docker](https://docs.docker.com/)
 
-- What is a container? at its simplest it's a sandbox for a process - allowing the process to have its own namespace, restricting certain capabilities and imposing resource limits as required.
+- What is a container? At its simplest it's a sandbox for a process - allowing the process to have its own namespace, restricting certain capabilities and imposing resource limits as required.
 - Container technology allows multiple isolated user space instances to be run on a single host.
+
+```
++---++---++---++---++---+   \
+| A || A || A || A || A |   |
+| p || p || p || p || p |   |
+| p || p || p || p || p |   |--- Containers running on Docker
+| 1 || 2 || 3 || 4 || 5 |   |
++---++---++---++---++---+   /
++-----------------------+
+|         Docker        |
++-----------------------+
++-----------------------+
+| Host Operating System |
++-----------------------+
++-----------------------+
+|     Infrastructure    |
++-----------------------+
+```
 - Containers are generally considered a lightweight or lean technology because they require limited overhead, as each process can be run on very small Linux distributions.
 - Docker encourages microservices architecture.
-- Images are the building blocks of the Docker world. You launch your containers from images.
-- `image` vs `container`: an image is akin to an OOP class (the blueprint), and the container is akin to an OOP object (the instance).
-- Docker stores the images you build in registries. There are two types of registries: public and private, and can be found on (Docker Hub)[https://hub.docker.com], which contains over 10,000 images that other people have built and shared.
-- A Docker container comprises:
-    - An image format.
-    - A set of standard operations.
-    - An execution environment.
+- Images are the building blocks of the Docker world. You launch your containers from images at runtime.
+- `image` vs `container`: An image is akin to an OOP class (the blueprint), and the container is akin to an OOP object (the instance). Containers can only be created when an image exists.
+- Docker stores the images you build in registries. These registries can be deployed as a local registry or through a Container Registry platform, the most common being [Docker Hub](https://hub.docker.com), which contains over 10,000 images that other people have built and shared. These registries can be public or private (payment plans are applicable for these).
+- You push/pull images to/from a registry in a similar way as we do with Git repositories.
+- There are many other Container Registry platforms, for example:
+  - https://github.com/features/package-registry
+  - https://cloud.google.com/container-registry/
+  - https://aws.amazon.com/es/ecr/
+  - https://azure.microsoft.com/en-us/services/container-registry/
+  - https://www.ibm.com/mx-es/cloud/container-registry
+- You can deploy images as a local registry, the following command can start the registry container:
+```sh
+$ docker run -d -p 5000:5000 --restart=always --name registry registry:2
+```
+
+### What is an image?
+
+- An image is a binary representation of files/state.
+- Images are arranged in a parent-child tree hierarchy of snapshots:
+```
+    scratch       <- empty file-system
+      /
+    ubuntu        <- bare-bones Linux OS
+    /    \
+  sshd  java1.8   <- dependencies
+  /  \     \
+app               <- a small application
+```
+- This allows for a modular design where images can be shared by other process that may be running and can be replaced very easily if images need updating.
+
+### Dockerfile
+
+- A Dockerfile is a text document that contains all the commands a user could call on the command-line to assemble an image.
+- Using `docker build` users can create an automated build that executes several command-line instructions in succession.
+- Common Dockerfile instructions start with `FROM`, `MAINTAINER`, `RUN`, `ENV`, `ADD`, and `CMD`, among others.
 
 ### Overview of common commands
 
 ```sh
-$ docker pull mongo
-$ docker run -d mongo
+$ docker pull <image_name>
+$ docker run -d <image_name>
+$ docker run --name <container_name> -d <image_name>:<tag>
 $ docker ps
-$ docker rm (remove a container)
-$ docker images (ps, but for images)
-$ docker rmi (remove image)
+$ docker rm <container_id>
+$ docker images
+$ docker rmi <image_id>
 $ docker stats
-$ docker exec -it my_container_name mongo
+$ docker exec -it <container_name> <command>
 ```
 
 ### Commands: in depth
 - Firstly, the docker daemon needs to be running running, I use the `Docker Desktop` app for this.
 - Try `$ docker run hello-world` to run a very simple hello-world image.
-- `$ docker pull <name>`: To make sure you have the relevant files for the project, `docker pull <name>` will download a particular image, or set of images (i.e., a repository) from the Docker Hub registry. You can also use the docker `push` command, which pushes the image to its configured registry.
-- `$ docker run --name some-mongo -d mongo:tag`: Start a mongo server instance, where `some-mongo` is the name you want to assign to your container and tag is the tag specifying the MongoDB version you want. The `-d` option detaches the container, allowing it to run in the background.
-- `$ docker run -d MongoDB` will return the container ID.
+- `$ docker pull <image_name>`: To make sure you have the relevant files for the project, `docker pull <image_name>` will download a particular image, or set of images (i.e., a repository) from the Docker Hub registry. You can also use `docker push` command, which pushes the image to its configured registry.
+- `$ docker run --name <container_name> -d <image_name>:<tag>`: Start a Mongo server instance, where `<container_name>` is the name you want to assign to your container and tag is the tag specifying the version you want. The `-d` option detaches the container, allowing it to run in the background.
+- `$ docker run -d <image_name>`: a shortcut of the above command, this will run the container in background and return the container ID.
 - `$ docker ps`: What processes are currently running? Notice the unique `container ID`, it's used in commands to specify the container:
 ```
 CONTAINER ID        IMAGE                        COMMAND                CREATED              STATUS              PORTS               NAMES
@@ -40,7 +87,7 @@ b2530588b5c0        mongo                        "docker-entrypoint.s…" 40 sec
 4c01db0b339c        ubuntu:12.04                 bash                   55 seconds ago       Up 154 seconds      3300-3310/tcp       webapp
 d7886598dbe2        tronald/redis:latest         /redis-server --dir    33 minutes ago       Up 33 minutes
 ```
-- `$ docker images`: lists the available images:
+- `$ docker images`: lists the available images (ps, but for images):
 ```
 REPOSITORY  TAG        IMAGE ID        CREATED         VIRTUAL SIZE
 mongo       latest     d98005b752b4    8 days ago      411MB
@@ -59,31 +106,19 @@ e5c383697914    test-1951.1.kay7x1lh1twk9c0oig50sd5tr   0.00%    196KiB / 1.952G
 ```
 - `$ docker exec -it wizardly_euclid mongo`:
     - `exec` runs a command in a running container.
-    - `-i` indicates that the container will run interactively and the `-t` flag creates a virtual tty terminal, which can be detached with ^P^Q.
-    - The container is called `wizardly_euclid` (these names are auto-generated and can be found when running `$ docker ps`) and it runs `mongo`.
-    - Alternatively, the first few characters of the container ID can be used instead of the full name: `$ docker exec -it b25 mongo`s.
-- `$ docker stop my_container` can be used to stop the container, this is useful if you forgot to add the -it flag on the command.
-
-### What is an image?
-
-- An image is a binary representation of files/state.
-- Images are arranged in a parent-child tree hierarchy of snapshots:
-```
-app                 <- a small application
-  \  /     /
-  sshd   java1.8    <- dependencies
-    \    /
-    ubuntu          <- bare-bones Linux OS
-      \     /
-      scratch       <- empty file-system
-```
-- This allows for a modular design where images can be shared by other process that may be running and can be replaced very easily if images need updating.
-
-### Dockerfile
-
-- A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image.
-- Using docker build users can create an automated build that executes several command-line instructions in succession.
-- Common Dockerfile instructions start with `RUN`, `ENV`, `FROM`, `MAINTAINER`, `ADD`, and `CMD`, among others. An example looks like this:
+    - `-i` indicates that the container will run interactively and the `-t` flag creates a virtual tty terminal, which can be detached with `^P^Q`.
+    - Here, the container called `wizardly_euclid` (these names are auto-generated and can be found when running `$ docker ps`) will run `mongo` command.
+    - Alternatively, the first few characters of the container ID can be used instead of the full name. For example, to execute `mongo` command in the container with ID `b2530588b5c0`: `$ docker exec -it b25 mongo`.
+- `$ docker stop <container_name>` can be used to stop the container, this is useful if you forgot to add the `-it` flag on the command.
+- `$ docker build [OPTIONS] PATH | URL | -`: Build an image from a Dockerfile. An example would be: `$ docker build -t nginx_image .`, the `-t` flag adds a tag to the image so that it gets a nice repository name and tag and the final `.` indicates that the Dockerfile in the current directory should be used.
+- The Dockerfile is a text file that contains all commands, in order, needed to build a given image. It's a DSL that has a handful of instructions:
+  - `RUN`: Executes a command and save the result as a new layer
+  - `ENV`: Sets an environment variable in the new container
+  - `FROM`: The base image to use in the build. This is mandatory and must be the first command in the file.
+  - `MAINTAINER`: An optional value for the maintainer of the script
+  - `ADD`: Copies a file from the host system onto the container
+  - `CMD`: The command that runs when the container starts
+- An example looks like this:
 ```
 # Dockerfile
 FROM demo/maven:3.3-jdk-8
@@ -96,4 +131,4 @@ ENV TOMCAT_MAJOR_VERSION 8
 ENV TOMCAT_MINOR_VERSION 8.0.11
 ENV CATALINA_HOME /tomcat
 ```
-- This dockerfile will need to be built with: `$ docker build -f Dockerfile -t demo/spring:maven-3.3-jdk-8`
+- The above dockerfile will need to be built with: `$ docker build -t demo/spring:maven-3.3-jdk-8 .`.
