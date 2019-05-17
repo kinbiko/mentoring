@@ -1,9 +1,11 @@
+package string_based;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 /**
- * Kata Bowling - http://codingdojo.org/kata/Bowling/
+ * Kata string_based.Bowling - http://codingdojo.org/kata/Bowling/
  * A string based solution. This code can be improved, however,
  * not additional changes will be made to this code,
  * since there is a better approach passing points directly per roll.
