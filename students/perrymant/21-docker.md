@@ -58,7 +58,27 @@ app               <- a small application
 
 - A Dockerfile is a text document that contains all the commands a user could call on the command-line to assemble an image.
 - Using `docker build` users can create an automated build that executes several command-line instructions in succession.
-- Common Dockerfile instructions start with `FROM`, `MAINTAINER`, `RUN`, `ENV`, `ADD`, and `CMD`, among others.
+- The Dockerfile is a text file that contains all commands, in order, needed to build a given image. It's a DSL that has a handful of instructions:
+  - `RUN`: Executes a command and save the result as a new layer
+  - `ENV`: Sets an environment variable in the new container
+  - `FROM`: The base image to use in the build. This is mandatory and must be the first command in the file.
+  - `MAINTAINER`: An optional value for the maintainer of the script
+  - `ADD`: Copies a file from the host system onto the container
+  - `CMD`: The command that runs when the container starts
+  - There are many more, see [Dockerfile best practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/) for more info.
+- An example looks like this:
+```
+# Dockerfile
+FROM demo/maven:3.3-jdk-8
+MAINTAINER Author <autor@email.com>
+RUN apt-get update && \
+    apt-get install -yq --no-install-recommends wget pwgen ca-certificates && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+ENV TOMCAT_MAJOR_VERSION 8
+ENV TOMCAT_MINOR_VERSION 8.0.11
+ENV CATALINA_HOME /tomcat
+```
 
 ### Overview of common commands
 
@@ -110,25 +130,4 @@ e5c383697914    test-1951.1.kay7x1lh1twk9c0oig50sd5tr   0.00%    196KiB / 1.952G
     - Here, the container called `wizardly_euclid` (these names are auto-generated and can be found when running `$ docker ps`) will run `mongo` command.
     - Alternatively, the first few characters of the container ID can be used instead of the full name. For example, to execute `mongo` command in the container with ID `b2530588b5c0`: `$ docker exec -it b25 mongo`.
 - `$ docker stop <container_name>` can be used to stop the container, this is useful if you forgot to add the `-it` flag on the command.
-- `$ docker build [OPTIONS] PATH | URL | -`: Build an image from a Dockerfile. An example would be: `$ docker build -t nginx_image .`, the `-t` flag adds a tag to the image so that it gets a nice repository name and tag and the final `.` indicates that the Dockerfile in the current directory should be used.
-- The Dockerfile is a text file that contains all commands, in order, needed to build a given image. It's a DSL that has a handful of instructions:
-  - `RUN`: Executes a command and save the result as a new layer
-  - `ENV`: Sets an environment variable in the new container
-  - `FROM`: The base image to use in the build. This is mandatory and must be the first command in the file.
-  - `MAINTAINER`: An optional value for the maintainer of the script
-  - `ADD`: Copies a file from the host system onto the container
-  - `CMD`: The command that runs when the container starts
-- An example looks like this:
-```
-# Dockerfile
-FROM demo/maven:3.3-jdk-8
-MAINTAINER Author <autor@email.com>
-RUN apt-get update && \
-    apt-get install -yq --no-install-recommends wget pwgen ca-certificates && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-ENV TOMCAT_MAJOR_VERSION 8
-ENV TOMCAT_MINOR_VERSION 8.0.11
-ENV CATALINA_HOME /tomcat
-```
-- The above dockerfile will need to be built with: `$ docker build -t demo/spring:maven-3.3-jdk-8 .`.
+- `$ docker build [OPTIONS] PATH | URL | -`: Build an image from a Dockerfile. In the example dockerfile above, the command to build would be: `$ docker build -t demo/spring:maven-3.3-jdk-8 .`, the `-t` flag adds a tag to the image so that it gets a nice repository name and tag and the final `.` indicates that the Dockerfile in the current directory should be used.
