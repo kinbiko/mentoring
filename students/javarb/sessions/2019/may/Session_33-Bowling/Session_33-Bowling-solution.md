@@ -8,7 +8,7 @@
 
 #### Reviewing bowling game TDD solution and and feedback
 
-My solution was a more difficult approach about the problem, since I was taking a string as argument and processing the provided stream by frame (2 rolls), which sometimes can be 1 roll (when strike). 
+In my approach to solve the given Kata, I was taking a string as argument and processing the provided stream by frame (2 rolls), which sometimes can be 1 roll (when strike). 
 
 To show this, an excerpt of my tests code: 
 
@@ -29,7 +29,7 @@ private int runTest(String frames) {
 
 ```
 
-In `gameScore()` method of `Bowling` class I was removing spaces in the string and casting `char`s to `int`, after of it iterating over the given frames and adding up according to provided name and game conditions. My game came to certain point of complexity since I was having to accomplish with mixed conditions. over the loop.
+In `gameScore()` method of `Bowling` class I was removing spaces in the string and casting `char`s to `int`s. After of it, I was iterating over the given frames and adding up according to game conditions. This quickly came to certain point of complexity since I was having to accomplish mixed conditions into the loop, and between them, consider the possibility of just 1 roll per frame (when strike) or two of them(other conditions).
 
 During session, Roger was explaining to me another approach that was considerably easier. This was by providing scores amounts directly by roll. So if there is 20 rolls (or 10 frames) in a game, I should to provide 20 calls to the `roll()` method of `Bowling` class instead to make one single call to game with `n` (1..20) characters. Also a helper method `rollMany()` was introduced in order to roll `x` points `n` times. Provided data was stored into a in memory array called `rolls`. An excerpt of some tests and `roll()` and `rollMany()` methods:
 
@@ -125,7 +125,7 @@ class Bowling {
 }
 ```
 
-**Note:** Complete code is on disk (by the moment this isn't on GitHub).
+**Note:** Complete code of both versions is on [this session folder on GitHub](https://github.com/kinbiko/mentoring/tree/javarb/session-33-Bowling/students/javarb/sessions/2019/may/Session_33-Bowling/Bowling)
 
 ### Homework
 
