@@ -6,7 +6,7 @@
 
 ## Notes
 
-#### Reviewing bowling game TDD solution and and feedback
+#### Reviewing [bowling game kata](http://codingdojo.org/kata/Bowling/) solution and and feedback
 
 In my approach to solve this Kata, I was taking a string as argument and processing the provided stream by frame (2 rolls), which sometimes can be 1 roll (when strike). 
 
