@@ -8,7 +8,7 @@
 
 #### Reviewing bowling game TDD solution and and feedback
 
-In my approach to solve the given Kata, I was taking a string as argument and processing the provided stream by frame (2 rolls), which sometimes can be 1 roll (when strike). 
+In my approach to solve this Kata, I was taking a string as argument and processing the provided stream by frame (2 rolls), which sometimes can be 1 roll (when strike). 
 
 To show this, an excerpt of my tests code: 
 
