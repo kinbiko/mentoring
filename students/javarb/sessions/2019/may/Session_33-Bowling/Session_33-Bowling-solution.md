@@ -28,8 +28,7 @@ private int runTest(String frames) {
 }
 
 ```
-
-In `gameScore()` method of `Bowling` class I was removing spaces in the string and casting `char`s to `int`s. After of it, I was iterating over the given frames and adding up according to game conditions. This quickly came to certain point of complexity since I was having to accomplish mixed conditions into the loop, and between them, consider the possibility of just 1 roll per frame when strike or two of them in other conditions.
+IIn `gameScore()` method of `Bowling` class I was removing spaces in the string and casting `char`s to `int`s. After of it, I was iterating over the given frames and adding up according to game conditions. This quickly came to certain point of complexity since I was having to accomplish mixed conditions into the loop, and between them, consider the possibility of just 1 roll per frame when strike or two of them in other conditions.
 
 During session, Roger was explaining to me another approach that was considerably easier. This was by providing scores amounts directly by roll. So if there is 20 rolls (or 10 frames) in a game, I should to provide 20 calls to the `roll()` method of `Bowling` class instead to make one single call to game with `n` (1..20) characters. Also a helper method `rollMany()` was introduced in order to roll `x` points `n` times. Provided data was stored into a in memory array called `rolls`. An excerpt of some tests and `roll()` and `rollMany()` methods:
 
