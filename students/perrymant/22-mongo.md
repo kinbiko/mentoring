@@ -8,7 +8,7 @@
 - Here's a typical MongoDB document:
 ```js
 {
-_id: ObjectID('f2d1e8e17ce8963b4bdf264a'),
+_id: ObjectId('f2d1e8e17ce8963b4bdf264a'),
   username: 'HumptyD',
   email: [
     'HumptyD@gmail.com',
@@ -57,7 +57,7 @@ db.student.find({$and:[{"s_name":{ $not: /^M.*/ }},{"grd_point":{ $gte: 31 }},{"
 ##### Useful to know:
 
 - The default port is 27017.
-- `ObjectID`: every document created in MongoDB will have an `ObjectID`, which looks like `_id: <5bb7...>` where the 12-byte hexadecimal number represents a 4-byte value representing the seconds since the Unix epoch, a 5-byte random value, and a 3-byte counter, starting with a random value. These are used to uniquely identify all objects in MongoID and acts as a primary key.
+- `ObjectId`: every document created in MongoDB will have an `ObjectId`, which looks like `_id: <5bb7...>` where the 12-byte hexadecimal number represents a 4-byte value representing the seconds since the Unix epoch, a 5-byte random value, and a 3-byte counter, starting with a random value. These are used to uniquely identify all objects in MongoID and acts as a primary key.
 - Example databases available at: https://github.com/ozlerhakan/mongodb-json-files
 - `MongoDB Compass` is an example of a GUI.
 
