@@ -2618,13 +2618,50 @@ Indices are generally stored in RAM, which is partly why they are so performant.
 - Redis - stored in RAM so does not require indices as it's already very performant.
 - ElasticSearch - useful for searching. As programmers generally use it to speed up searching, they tend to only store the search-related data here.
 
-## Creating Websites
+## Important Tools for Creating Websites
 
-React is a JavaScript library for building user interfaces. It takes the backend state and turns it into a frontend view.
+### React
 
-Gatsby JavaScript Framework is a tool based on React that builds websites using only static files, which increases the speed the user can navigate through the resulting interface.
+React is a JavaScript library or framework for building user interfaces.
+It takes the backend state and turns it into a frontend view.
+The framework takes care of the boilerplate so React allows programmers to simplify tasks that would otherwise be difficult.
+(In a similar way, JUnit is a Java framework for simplifying the writing of tests).
 
-Node.js provides the ability for programmers to write web servers using JavaScript. Node Package Manager (NPM) is a command line interface for managing node modules (a way of getting node applications such as VS Code and Atom).
+There is some debate regarding whether React should be thought of as a framework or a library.
+Due to React's popularity, many tools have been built around it, e.g. JSX (JavaScript Extended).
+React, in combination with these tools, is generally thought of as a framework.
+
+React also allows JavaScript, HTML and CSS to be combined together in JavaScript classes.
+
+### Gatsby
+
+Gatsby JavaScript frontend Framework is a tool that builds websites using only static files, which increases the speed the user can navigate through the resulting interface.
+It is a combination of React and other libraries, with the `gatsby-cli` (command line tool) in `Node.js`.
+
+### Node
+
+Node.js provides the ability for programmers to write JavaScript on servers.
+Unlike languages such as Java, C, C#, C++, Go, Ruby, Python etc, JavaScript requires Node.js or similar to allow it to run outside of a browser (and in particular in a shell).
+
+#### Node Package Manager (NPM)
+
+Node Package Manager (NPM) is a command line interface for managing node modules (a way of getting node applications such as VS Code and Atom).
+
+Useful NPM Commands:
+
+`npm run build`\
+`npm run develop`\
+`npm run format`\
+`npm run serve`\
+`npm start`\
+`npm test`
+
+The last two commands have been given special meaning whereby the user does not need to `run` the command.
+
+When using Gatsby, it's good practice to do `npm run format` before asking for a review of, or publishing, your content.
+(This function is specific to Gatsby, and won't work on node projects unless they've defined the 'format' script in their package.json file).
+
+As Gatsby is built with Node.js, `gatsby develop` and `npm start` do the same thing.
 
 ## A Simple Guide to How the Internet Works
 
@@ -2632,9 +2669,13 @@ Clients (machines such as computers or web servers) send requests to web servers
 
 ### HyperText Transfer Protocol (HTTP)
 
-The client to web server and back communications take the form of protocols, which are built on top of the Internet Protocol. Two of the more commonly known protocols are HyperText Transfer Protocol (HTTP) and HyperText Transfer Protocol Secure (HTTPS). HTTPS is HTTP with a layer of encryptions, which come from a Secure Socket Layer (SSL).
+The client to web server and back communications take the form of protocols, which are built on top of the Internet Protocol.
+Two of the more commonly known protocols are HyperText Transfer Protocol (HTTP) and HyperText Transfer Protocol Secure (HTTPS).
+HTTPS is HTTP with a layer of encryptions, which come from a Secure Socket Layer (SSL).
 
-HTTP and HTTPS always consist of a header and, depending on the method called, can also contain a body. The body can be written in JSON, HTML, JavaScript, CSS, XML etc.
+HTTP and HTTPS always consist of *the* header (made up of many different headers) and, depending on the method called, can also contain a body.
+The headers contain information such as content type and can include cookies.
+The body can be written in JSON, HTML, JavaScript, CSS, XML etc.
 
 #### Key HTTP Methods
 
@@ -2648,11 +2689,14 @@ Web servers are not required to follow these methods, and can use methods (e.g. 
 
 When sent from the client, methods such as `POST`, `PUT` and `PATCH` always consist of a header and a body (as the client needs to send the web server the data it wants to add or update).
 
-The `GET` method should not have a body when sent from the client as additional information can be included in the Uniform Resource Locator (URL).
+The HTTP [Request for Comments](https://www.ietf.org/standards/rfcs/) [vaguely specifies](https://stackoverflow.com/a/983458) that the a body in a `GET` request should not alter the behaviour of the server in any way .
+Additional information can be included in the Uniform Resource Locator (URL).
+However, some web servers such as `Elasticsearch` have enabled their `GET` requests to have bodies.
 
 The body is sometimes referred to as the payload. The responses from the web server will typically have a body.
-
-The sender will specify how many bytes the body consists of. Generally each character is one byte, although some characters e.g. Chinese characters could be more than one byte. If the body received contains a smaller or larger number of bytes, then the receiver knows that the content could have been corrupted.
+The sender will specify how many bytes the body consists of.
+Generally each character is one byte, although some characters e.g. Chinese characters could be more than one byte.
+If the body received contains a smaller or larger number of bytes, then the receiver knows that the content could have been corrupted.
 
 ### HTTP Status Codes
 
@@ -2668,7 +2712,8 @@ When they begin with the following numbers, status codes mean:
 
 ### Uniform Resource Locator (URL)
 
-The client to web server communications are enabled by web browsers. Web browsers are software applications with Graphical User Interfaces (GUIs) that take the request made by the person/computer and retrieve it from a web server using a Uniform Resource Locator (URL).
+The client to web server communications are enabled by web browsers.
+Web browsers are software applications with Graphical User Interfaces (GUIs) that take the request made by the person/computer and retrieve it from a web server using a Uniform Resource Locator (URL).
 
 URLs are signposts to web servers and usually consist of domains, resources and query parameters.
 
@@ -2739,6 +2784,17 @@ Whilst devices need IP addresses to find locations, domains are more memorable f
 
 To set up a website, you would buy a domain name. Then you would use DNS to link the domain name to your IP address. Then wait 24 hours for the changes to take effect. Remember to clear your cache history or your computer will keep taking you to the wrong location!
 
+#### Creating a Website with Netlify
+
+[Netlify](https://www.netlify.com/) is a useful tool that assists in the creation and maintenance of websites.
+It is good for hosting a static website i.e. a website with no backend/server behind it.
+
+Netlify has functions such as continuous deployment, which works by connecting a Git repository to a Netlify website.
+Every change that's made on the Git repository (using `git push`) will be instantly shown on the Netlify website.
+This is possible using code such as webhooks (code linked to a web application) that are triggered by specific events to send data to a specified URL in the form of an HTTP request.
+
+If you'd like to see an example website, you can check out [my website](https://5cc2073238985a00093e0922--tender-kalam-06c4d0.netlify.com/).
+
 ### REpresentational State Transfer (REST)
 
 REpresentational State Transfer (REST), is an architectural style that makes it easier for computer systems to communicate with each other via the web. Computer systems that use this style, often called RESTful systems, are stateless. This means that they support the separation of the concerns of client and the web server so that neither needs to know the state of the other in order to communicate. There are many benefits of statelessness, including:
@@ -2753,3 +2809,68 @@ Cookies
 
 Bandwidth
 - Bandwidth measures volume of data in bits per second.
+
+## OSI Model
+
+The International Standards Organisation (ISO) developed the Open Systems Interconnection (OSI) model.
+The OSI model is framework that defines how communication systems should operate regardless of their underlying structure.
+The model divides data communication into seven layers that group protocols by their functionality, which ensures that all systems communicate data in a similar way.
+
+The seven layers of the [OSI Model](https://www.bmc.com/blogs/osi-model-7-layers/) are:
+
+1. Physical
+1. Data Link
+1. Network
+1. Transport
+1. Session
+1. Presentation
+1. Application
+
+However, the layers are normally shown in the reverse order as sending data starts with an application and moves down through the layers, with no-longer-needed data being stripped away until the physical transport layer.
+From this, layers are then added back on until the application layer, at which point the data has made it to the receiver.
+
+| OSI Layer | [Examples](https://www.webopedia.com/quick_ref/OSI_Layers.asp) |
+| --------- | -------- |
+| 1. Physical | Ethernet |
+| 2. Data Link | PPP |
+| 3. Network | IP |
+| 4. Transport | TCP |
+| 5. Session | SQL |
+| 6. Presentation | GIF, JPEG |
+| 7. Application | WWW browsers, HTTP |
+
+The OSI Model is the basic standard for data communication, but some layers can be grouped together and data can be sent and received without needing all of the layers.
+
+## More on Protocols
+
+- The Internet Protocol tells two computers how to find each other.
+- Transmission Control Protocol (TCP) allows the computers to have a connection.
+- HTTP defines the `request-response` paradigm.
+- Git is a protocol that can be used on top of HTTP.
+- Postman is an HTTP client.
+- A web server is something that responds to requests.
+- A mail server responds to email requests.
+
+## Compilers and Transpilers
+
+Compilers are programs that take source code written in one language and produce an executable output file in machine code (usually, Java is a notable exception).
+
+Transpilers take a source code file and convert it to a source code file in another language or a different version of the same language.
+The output will not be executable until it goes through a compiler or interpreter.
+
+Transpilers are also called source-to-source compilers.
+
+## Model-View-Controller (MVC) Framework
+
+The MVC framework is an architectural design used for developing user interfaces where the application is divided into three interconnected parts.
+
+Model - Data stored in a database.
+
+View - Data shown to the user.
+
+Controller - Business logic.
+
+In MVC frameworks, the model and view are decoupled.
+This means they don't interact with each other and can therefore be updated independently of each other.
+
+Examples of MVC frameworks are Rails (written in Ruby) and Spring MVC (written in Java).
