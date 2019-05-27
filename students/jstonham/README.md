@@ -2874,3 +2874,148 @@ In MVC frameworks, the model and view are decoupled.
 This means they don't interact with each other and can therefore be updated independently of each other.
 
 Examples of MVC frameworks are Rails (written in Ruby) and Spring MVC (written in Java).
+
+# React
+
+React takes an entire web page and splits it into components.
+These components are usually a combination of JavaScript, HTML and CSS.
+
+The JavaScript part of React allows classes and encapsulation.
+This allows components to be kept separate and updated independently of each other.
+
+Part of the reason that React is really performant is that change can only happen in one direction.
+Unlike other tools such as Angular and Ember, where change can flow from a component's state to the user *or* from the user to a component's state, React *only* allows change to flow from a component's state to the user.
+
+React components are made up of tags.
+There can only be one outermost tag in a React component, but other tags can be nested inside.
+In the following example, the `render()` method has an outermost `div` tag with `h1` and `ul` tags nested inside, and inside the `ul` tag are 3 `li` tags:
+
+```JSX
+render() {
+        return (
+            <div className="shopping-list">
+            <h1>ShoppingList for {this.props.name}</h1>
+            <ul>
+                <li>Instagram</li>
+                <li>WhatsApp</li>
+                <li>Oculus</li>
+            </ul>
+            </div>
+        );
+    }
+  ```
+
+## JSX (JavaScript Extended)
+
+JavaScript Extended is JavaScript with HTML.
+React can take in JSX and render as HTML.
+
+The following is a React component called `Greeting`, written in JSX, that will render the greeting message in HTML.
+
+```JSX
+class Greeting extends React.Component {
+    render() {
+        const name = this.props.name
+        return <p> Hi! My name is {name} </p>
+    }
+}
+```
+
+React components only need one method, `render()`, which will return the new component in a JSX format.
+
+Due to the fact that it's a combination of JavaScript and HTML, JSX needs to be able to differentiate between its JavaScript and HTML classes.
+The way it does so is to call its JavaScript classes `class` and its HTML classes `className`.
+
+## Data Structure
+
+Computer scientists think of data structures as trees (although it's easier to think of them as root systems).
+
+Example data structure:
+
+| | | Root (main Parent) | | | |
+| ---| --- | --- | --- | --- | --- |
+| | Parent 1 | | | Parent 2 | |
+| Child 1 | Child 2 | Child 3 | Child 1 | Child 2 | Child 3 |
+
+Parent components can have multiple child components, but child components can have only one parent component.
+
+This data structure is not only for React components, but for structures such as Lists and Maps.
+
+In React, the child components do not need to know their parent component.
+The parent component will dictate their props, but the child component does not need to know where their props come from.
+
+Browsers use a similar structure, called the Document Object Model (DOM) as a reference for placing elements on a web page.
+Elements are nested within each other in a tree-like structure and the locations of where the elements are placed are referred to as nodes.
+Medium has a good [article](https://medium.com/javascript-in-plain-english/how-to-traverse-the-dom-in-javascript-d6555c335b4e) that explains it all quite nicely.
+
+## State and Props (Properties)
+
+A component's state is defined within the component itself.
+A component's props are defined by other components.
+(A component cannot define its own properties).
+
+A component's state can only be defined inside its constructor.
+`this.state` defines the state.
+
+### Why Immutability is Important
+
+In React, the state and props of all components is immutable.
+This means that once they have been defined, they cannot be (directly) changed.
+
+React does allow state to be indirectly changed, outside of the constuctor and render, using `this.setState()`.
+The `.slice()` operater is also handy as it copies the existing state and provides a new version with the desired changes.
+
+The benefits of React's immutable state and props are:
+- Implementation of complex features becomes more simple (especially if those complex features involve needing to know the previous state of a component).
+- Detecting changes is easier.
+- React knows when to re-render components.
+
+### Lifting State Up
+
+State should be defined in the highest component that cares about that data.
+
+Say we had a house component and 10 different light components. If the light components were all to define their own state (i.e. whether they are on or off), and the house component had to ask each of the light components for their state, the code becomes
+- difficult to understand
+- susceptible to bugs
+- hard to refactor
+
+To make communication between the house and light components easier, we can lift the state of the lights up to the house to define for them and tell them their state as props.
+
+### Re-Rendering
+
+A component will re-render in the following scenarios:
+- The parent component decides that the child component should be given a different prop.
+- The component's state has changed (i.e. `this.setState()` has been called).
+
+## Floating Functions
+
+JavaScript allows programmers to create floating functions i.e. functions not in a class.
+If the component doesn't have state and only has one method (render), the component can be written as a function instead of a class.
+
+Below is an example of how a component, `Square`, which does not have state and only has the render method, can be written as a class or as a function.
+
+Class Component:
+```JSX
+class Square extends React.Component {
+  render() {
+    return (
+      <button
+        className="square"
+        onClick={() => this.props.onClick()}
+      >
+        {this.props.value}
+      </button>
+    );
+  }
+}
+```
+Function Component:
+```JSX
+function Square(props) {
+    return (
+      <button className="square" onClick={props.onClick}>
+        {props.value}
+      </button>
+    );
+}
+```
