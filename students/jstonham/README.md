@@ -2631,20 +2631,17 @@ There is some debate regarding whether React should be thought of as a framework
 Due to React's popularity, many tools have been built around it, e.g. JSX (JavaScript Extended).
 React, in combination with these tools, is generally thought of as a framework.
 
-React is a powerful tool that allows classes, inheritance, nested components etc.
-React also allows JavaScript, HTML and CSS to be combined together in website components.
+React also allows JavaScript, HTML and CSS to be combined together in JavaScript classes.
 
 ### Gatsby
 
-Gatsby JavaScript Framework is a tool that builds websites using only static files, which increases the speed the user can navigate through the resulting interface. It is good for front-end development.
-
-Gatsby is designed to run in a web browser.
+Gatsby JavaScript frontend Framework is a tool that builds websites using only static files, which increases the speed the user can navigate through the resulting interface.
 It is a combination of React and other libraries, with the `gatsby-cli` (command line tool) in `Node.js`.
 
 ### Node
 
-Node.js provides the ability for programmers to write web servers using JavaScript.
-Programmers need Node.js or similar in order to use JavaScript outside of a browser.
+Node.js provides the ability for programmers to write JavaScript on servers.
+Unlike languages such as Java, C, C#, C++, Go, Ruby, Python etc, JavaScript requires Node.js or similar to allow it to run outside of a browser (and in particular in a shell).
 
 #### Node Package Manager (NPM)
 
@@ -2661,7 +2658,8 @@ Useful NPM Commands:
 
 The last two commands have been given special meaning whereby the user does not need to `run` the command.
 
-It's good practice to do `npm run format` before asking for a review of, or publishing, your content.
+When using Gatsby, it's good practice to do `npm run format` before asking for a review of, or publishing, your content.
+(This function is specific to Gatsby, and won't work on node projects unless they've defined the 'format' script in their package.json file).
 
 As Gatsby is built with Node.js, `gatsby develop` and `npm start` do the same thing.
 
@@ -2691,7 +2689,7 @@ Web servers are not required to follow these methods, and can use methods (e.g. 
 
 When sent from the client, methods such as `POST`, `PUT` and `PATCH` always consist of a header and a body (as the client needs to send the web server the data it wants to add or update).
 
-[Request for Comments](https://www.ietf.org/standards/rfcs/) specifies that the `GET` method should not have a body when sent from the client.
+The HTTP [Request for Comments](https://www.ietf.org/standards/rfcs/) [vaguely specifies](https://stackoverflow.com/a/983458) that the a body in a `GET` request should not alter the behaviour of the server in any way .
 Additional information can be included in the Uniform Resource Locator (URL).
 However, some web servers such as `Elasticsearch` have enabled their `GET` requests to have bodies.
 
@@ -2818,7 +2816,7 @@ The International Standards Organisation (ISO) developed the Open Systems Interc
 The OSI model is framework that defines how communication systems should operate regardless of their underlying structure.
 The model divides data communication into seven layers that group protocols by their functionality, which ensures that all systems communicate data in a similar way.
 
-The seven layers of the [OSI Model](https://www.webopedia.com/quick_ref/OSI_Layers.asp) are:
+The seven layers of the [OSI Model](https://www.bmc.com/blogs/osi-model-7-layers/) are:
 
 1. Physical
 1. Data Link
@@ -2831,7 +2829,7 @@ The seven layers of the [OSI Model](https://www.webopedia.com/quick_ref/OSI_Laye
 However, the layers are normally shown in the reverse order as sending data starts with an application and moves down through the layers, with no-longer-needed data being stripped away until the physical transport layer.
 From this, layers are then added back on until the application layer, at which point the data has made it to the receiver.
 
-| OSI Layer | Examples |
+| OSI Layer | [Examples](https://www.webopedia.com/quick_ref/OSI_Layers.asp) |
 | --------- | -------- |
 | 1. Physical | Ethernet |
 | 2. Data Link | PPP |
@@ -2855,10 +2853,11 @@ The OSI Model is the basic standard for data communication, but some layers can 
 
 ## Compilers and Transpilers
 
-Compilers are programs that take source code written in one language and produce an executable output file in another language.
+Compilers are programs that take source code written in one language and produce an executable output file in machine code (usually, Java is a notable exception).
 
 Transpilers take a source code file and convert it to a source code file in another language or a different version of the same language.
-The output will not be executable until it goes through a compiler.
+The output will not be executable until it goes through a compiler or interpreter.
+
 Transpilers are also called source-to-source compilers.
 
 ## Model-View-Controller (MVC) Framework
@@ -2874,4 +2873,4 @@ Controller - Business logic.
 In MVC frameworks, the model and view are decoupled.
 This means they don't interact with each other and can therefore be updated independently of each other.
 
-Examples of MVC frameworks are Rails (written in Ruby) and Sails.js (written in Node.js).
+Examples of MVC frameworks are Rails (written in Ruby) and Spring MVC (written in Java).
