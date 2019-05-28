@@ -19,6 +19,15 @@ Write a simple project to benchmark their performance for serialization and seri
 Write a blog post (preferably in English) about what you discovered.
 
 
+
+I have get to decide:
+
+- how many libraries to check
+- how you can create a benchmark
+- how to write your blog post.
+
+
+
 ### Solution
 
 #### Part 1
