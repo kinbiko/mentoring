@@ -2,7 +2,7 @@
 
 ### What is a log?
 
-- A log message is what a computer system, device, software, etc. generates in response to some sort of stimuli.
+- A log message is a register of an event generated when some kind of activity happens in a software that runs on a computer or device.
 - Logs are used to derive meaning in the following domains:
     - troubleshooting/resolving issues
     - computer system resource management
@@ -20,14 +20,20 @@
     - What happened (with appropriate detail; “Something happened” is not usually particularly useful).
     - When did it happen (and when did it start and end, if relevant).
     - Where did it happen (on what host, what file system, which network interface, etc.).
-    - Who was involved.
-    - Where he, she or it came from (if dealing with OS/Security logs).
+    - Who was involved (usually in the form of a user ID).
+    - Where he, she or it came from (if dealing with OS/Security logs, or the source IP address).
 - The logging ecosystem (or logging infrastructure), are all the components and piece parts that come together to allow for the generation, filtering, normalization, analysis, and long-term storage of log data.
     Once a device or computer system is configured to generate log messages, the next step is to filter and normalize the messages.
     - `Filtering` deals with including or excluding log messages based on the content in the log message.
     - `Normalization` is the act of taking disparately formatted log messages and converting them to a common format through the use of parsing, which entails scanning the log message from start to finish to pull out information we are interested in and place them into normalized fields.
     - `Log message analysis` deals with collating, correlating and analyzing log data to derive meaning from it.
-    - `long-term data store` is typically accomplished by using a database.
+    - `Long-term data store` is typically accomplished by using a database.
+        - This will usually only store the last months, days, hours, dependant on the size of the HD and the size/detail/amount of logs. Preserving a vast amount of logging history can be achieved by storing on backup media (DVD, tapes, external HDD, [NAS](https://en.wikipedia.org/wiki/Network-attached_storage), etc.) or sending that logs to a cloud storage engine such as [GCP Coldline Storage](https://cloud.google.com/storage/archival/) or [AWS S3](https://aws.amazon.com/s3/).
+        - It is pretty common to store your logs in Elasticsearch (a database), and use something called the ELK stack (Elasticsearch, Logstash, Kibana) to centralise your logs.
+- Logger software must be running on the base system or into the software itself in order to catch all generated events and write them to a log file that resides in some location on the storage device.
+- In order that a log can be writen, the software that generates it must have write permission into that specific disk location and file. In \*nix systems log files default location is `/var/log`. Thus each piece of software running \*nix services should be able to write to `/var/log` directory.
+- In Linux, for example, the `syslogd` service is on charge of log all system services related activities depending on the log level with which was configured (all kind of registries, or just errors, or debug logs, or info, etc.)
+- Java also has logger libraries that allows register events, and will store that information physically on a specified location of the baseystem.
 
 ### Log levels
 
@@ -41,15 +47,7 @@
     - `ERROR`: Error log messages are used to relay errors that occur at various levels in a computer system. Unfortunately, many error messages only give you a starting point as to why they occurred.
     - `ALERT`: An alert is meant to indicate that something interesting has happened.
 
-- The levels for `java.util.logging` (the underlying loggin framework in Java) in descending order are:
-    - `SEVERE` (highest value): indicating a serious failure
-    - `WARNING`: indicating a potential problem
-    - `INFO`: a message level for informational messages.
-    - `CONFIG`: a message level for static configuration messages, to assist in debugging problems that may be associated with particular configurations.
-    - `FINE`, `FINER`, `FINEST`  (lowest value)
-    All of `FINE`, `FINER`, and `FINEST` are intended for relatively detailed tracing.  The exact meaning of the three levels will vary between subsystems, but in general, `FINEST` should be used for the most voluminous detailed output, `FINER` for somewhat less detailed output, and `FINE` for the  lowest volume (and most important) messages.
-
-- In Syslog, the logging framework for OS and Networking, the levels are:
+- In Syslog, the logging framework for OS and Networking, the log levels are (source [Wiki](https://en.wikipedia.org/wiki/Syslog)):
 
 | Severity      | Description                       | Condition                                                                              |
 |---------------|-----------------------------------|----------------------------------------------------------------------------------------|
@@ -61,7 +59,7 @@
 | Notice        | Normal but significant conditions | Conditions that are not error conditions, but that may require special handling.       |
 | Informational | Informational messages            |                                                                                        |
 | Debug         | Debug-level messages              | Messages that contain information normally of use only when debugging a program.       |
-(source [Wiki](https://en.wikipedia.org/wiki/Syslog))
+
 
 - In Spring Boot Logging Levels are: `OFF`, `ERROR`, `WARN`, `INFO`, `DEBUG`, `TRACE`.
 - By default, Spring Boot configures logging via [Logback](http://logback.qos.ch) to write to the console at an INFO level.
@@ -81,7 +79,8 @@ public class HelloWorld {
 ```
 This would result in the following log message: `0 [main] INFO HelloWorld - Hello World`
 
-- Here's an example with `log4j`, logging in 3 different log levels:
+- `Log4j` is another library for logging in Java. Here's a log example setting a log message in three different log levels using `Log4J`:
+
 ```java
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
@@ -104,7 +103,7 @@ This would result in the following log message:
 15:11:22.027 [main] ERROR Log4jExample - Error log message
 ```
 
-For full control over the logging configuration in Intellij, you can create a logback.xml file at the root of the classpath (in src/main/resources). Here’s an example of a simple log-back.xml file you might use (this Logback configuration is more or less equivalent to the default you’ll get if you have no logback.xml file.):
+For full control over the logging configuration, you can create a `logback.xml` file in `src/main/resources`. Here’s an example of a simple `log-back.xml` file you might use (this logback configuration is more or less equivalent to the default you’ll get if you have no `logback.xml` file.):
 ```xml
 <configuration>
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
