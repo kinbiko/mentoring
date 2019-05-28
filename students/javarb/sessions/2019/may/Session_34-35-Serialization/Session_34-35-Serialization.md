@@ -12,7 +12,16 @@
 #### Part 1
 Figure out the most popular libraries for turning JSON strings into POJOs, and for turning POJOs into JSON.
 
+#### Part 2
+Write a simple project to benchmark their performance for serialization and serialization.
+
+#### Part 3
+Write a blog post (preferably in English) about what you discovered.
+
+
 ### Solution
+
+#### Part 1
 
 I found this [Top 5 Libraries for Serialization and Deserialization JSON in Java](https://simplesolution.dev/top-5-libraries-for-serialization-and-deserialization-json-in-java/). There they are mentioning following libraries:
 
@@ -48,13 +57,4 @@ I found [this other article](http://dgimenes.com/blog/2014/03/14/java-comparing-
 - progbase.
 
 Stil is a extensive list it's strange Jackson isn't there.
-
-
-#### Part 2
-Write a simple project to benchmark their performance for serialization and serialization.
-
-#### Part 3
-Write a blog post (preferably in English) about what you discovered.
-
-
 
