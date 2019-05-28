@@ -4,7 +4,6 @@
 
 - Research homework [on my project](https://github.com/kinbiko/mentoring/projects/7) board.
 
-
 ## Notes
 
 ### Homework
@@ -18,15 +17,11 @@ Write a simple project to benchmark their performance for serialization and seri
 #### Part 3
 Write a blog post (preferably in English) about what you discovered.
 
-
-
 I have get to decide:
 
 - how many libraries to check
 - how you can create a benchmark
 - how to write your blog post.
-
-
 
 ### Solution
 
@@ -67,3 +62,4 @@ I found [this other article](http://dgimenes.com/blog/2014/03/14/java-comparing-
 
 Stil is a extensive list it's strange Jackson isn't there.
 
+I decide to use: **Gson, Jackson and FastJson ** for my checks.
