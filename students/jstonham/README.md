@@ -2874,3 +2874,143 @@ In MVC frameworks, the model and view are decoupled.
 This means they don't interact with each other and can therefore be updated independently of each other.
 
 Examples of MVC frameworks are Rails (written in Ruby) and Spring MVC (written in Java).
+
+# React
+
+React takes an entire web page and splits it into components.
+These components are usually a combination of JavaScript, HTML and CSS.
+
+The JavaScript part of React allows classes and encapsulation.
+This allows components to be kept separate and updated independently of each other.
+
+Part of the reason that React is really performant is that change can only happen in one direction.
+Unlike other tools such as Angular and Ember, where change can flow from a component's state to the user *or* from the user to a component's state, React *only* allows change to flow from a component's state to the user.
+
+React components are made up of tags.
+There can only be one outermost tag in a React component, but other tags can be nested inside.
+In the following example, the `render()` method has an outermost `div` tag with `h1` and `ul` tags nested inside, and inside the `ul` tag are 3 `li` tags:
+
+```JSX
+render() {
+        return (
+            <div className="shopping-list">
+            <h1>ShoppingList for {this.props.name}</h1>
+            <ul>
+                <li>Instagram</li>
+                <li>WhatsApp</li>
+                <li>Oculus</li>
+            </ul>
+            </div>
+        );
+    }
+  ```
+
+## JSX (JavaScript Extended)
+
+JavaScript Extended is JavaScript with HTML.
+React can take in JSX and render as HTML.
+
+The following is a React component called `Greeting`, written in JSX, that will render the greeting message in HTML.
+
+```JSX
+class Greeting extends React.Component {
+    render() {
+        const name = this.props.name
+        return <p> Hi! My name is {name} </p>
+    }
+}
+```
+
+React components only need one method, `render()`, which will return the new component in a JSX format.
+
+Due to the fact that it's a combination of JavaScript and HTML, JSX needs to be able to differentiate between its JavaScript and HTML classes.
+The way it does so is to call its JavaScript classes `class` and its HTML classes `className`.
+
+## Data Structure
+
+Computer scientists think of data structures as trees (although it's easier to think of them as root systems).
+
+Example data structure:
+
+![here](data:image/jpeg;base64,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).
+
+Parent components can have multiple child components, but child components can have only one parent component.
+Trees are often used for searching, e.g. in database indices.
+
+In React, the child components do not need to know their parent component.
+The parent component will dictate their props, but the child component does not need to know where their props come from.
+
+Browsers use a similar structure, called the Document Object Model (DOM) as a reference for placing elements on a web page.
+Elements are nested within each other in a tree-like structure and the locations of where the elements are placed are referred to as nodes.
+Vojislav Grujić has written a good [article](https://medium.com/javascript-in-plain-english/how-to-traverse-the-dom-in-javascript-d6555c335b4e) that explains it all quite nicely.
+
+## State and Props (Properties)
+
+- A component declares its own state.
+- Parent components assign props (properties) to their child components.
+- A component cannot declare its own props.
+- A component's state can only be declared with the syntax `this.state` inside its constructor.
+- Components can declare which props, of the ones assigned by their parent component, they will use with the syntax `this.props`.
+
+### Why Immutability is Important
+
+In React, the state and props of all components is immutable.
+This means that once they have been defined, they cannot be (directly) changed.
+
+React does allow state to be indirectly changed, outside of the constuctor and render, using `this.setState()`.
+The `.slice()` operater is also handy as it copies the existing state and provides a new version with the desired changes.
+
+The benefits of React's immutable state and props are:
+- Implementation of complex features becomes more simple (especially if those complex features involve needing to know the previous state of a component).
+- Detecting changes is easier.
+- React knows when to re-render components.
+
+### Lifting State Up
+
+State should be defined in the highest component that cares about that data.
+
+Say we had a house component and 10 different light components. If the light components were all to define their own state (i.e. whether they are on or off), and the house component had to ask each of the light components for their state, the code becomes
+- difficult to understand
+- susceptible to bugs
+- hard to refactor
+
+To make communication between the house and light components easier, we can lift the state of the lights up to the house to define for them and tell them their state as props.
+
+### Re-Rendering
+
+A component will re-render in the following scenarios:
+- The parent component decides that the child component should be given a different prop.
+- The component's state has changed (i.e. `this.setState()` has been called).
+
+## Floating Functions
+
+JavaScript allows programmers to create floating functions i.e. functions not in a class.
+If the component doesn't have state and only has one method (render), the component can be written as a function instead of a class.
+
+Below is an example of how a component, `Square`, which does not have state and only has the render method, can be written as a class or as a function.
+
+Class Component:
+```JSX
+class Square extends React.Component {
+  render() {
+    return (
+      <button
+        className="square"
+        onClick={() => this.props.onClick()}
+      >
+        {this.props.value}
+      </button>
+    );
+  }
+}
+```
+Function Component:
+```JSX
+function Square(props) {
+    return (
+      <button className="square" onClick={props.onClick}>
+        {props.value}
+      </button>
+    );
+}
+```
