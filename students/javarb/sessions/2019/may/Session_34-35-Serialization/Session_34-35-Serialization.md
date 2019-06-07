@@ -62,18 +62,24 @@ I found [this other article](http://dgimenes.com/blog/2014/03/14/java-comparing-
 
 Stil is a extensive list it's strange Jackson isn't there.
 
-I decide to use: **Gson, Jackson and FastJson ** for my checks.
-
-
 ## Session 34 (21/05/2019 )
 
-#### Part 2 - Benchmarking
+#### Part 2 - Benchmark project
 
-In this session Roger was reviewing my first approximation to solution. I was using a single class called `Serialization.java` and a POJO called `Person.java`. 
+I decided to use: **Gson, Jackson and FastJson ** for my checks. In order to use them I needed to include them on `build.gradle` file:
+```java
+dependencies {
+	//...
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
+    compile group: 'com.alibaba', name: 'fastjson', version: '1.2.56'
+}
+```
+
+In my first approximation  solution. I was using a single class called `Serialization.java` and a POJO called `Person.java`. 
 The idea behind the benchmark was use a single time in miliseconds comparison after serialize a list set of persons. 
 
-Receiving feedback of Roger, I finished to write `main()` method of `Serialization.java` There a for loop was populating the `List` of `Person`s of size `n`, that corresponds to number of object to be created, and passing over another loop of size `m` that corresponds to sample size and was storing a `List` with the results of benchmark for each used serialization library.  After this, the mean was calculated for each library benchmarking list.
-
+Receiving feedback of Roger, I finished to write `main()` method of `Serialization.java`. There, a for loop was populating a `List` of `Person` objects and passing over another for loop to store the benchmark results of calculate the miliseconds time that takes to serialize the list of `Person`s. That results are stored in another `List` that is passes to `mean` method in order to calculate mean value and print it:
 ```java
 //...
 List<Person> persons = new ArrayList<>();
@@ -126,32 +132,35 @@ private long mean(List<Long> benchmarks) {
     return sum / benchmarks.size();
 }
 ```
+
 A for loop was used in order to add up benchmarks in order to after get the final mean time benchmarked. 
 
-As a side note there is another way to iterate by using `foreach()` lambda funcion:
+**Note:** As a side note, there is another way to iterate by using `foreach()` lambda funcion:
 ```java
 benchmarks.forEach(b -> sum +=b);
 ```
 As can be seen, this kind of function is practical to use but isn't possible to modify the elements we are iterating over, so we cannot use it here.
 
 
-#### Part 2 - Benchmarking - OOP
+#### Part 2 - Benchmark project in OOP
 
-After code was running, we saw code could be improved through asimilation of OOP concepts which allow us to include any library we want to our benchmark without need to modify our main funcions and code, just by including libraries and call corresponding object's methods.
+After code was running, we saw code could be improved through asimilation of OOP concepts which allow us to include any library we want to our benchmark without need to modify our main funcions and code. So instead of that, we could add another serialization library just by including the library on `build.gradle`, create the corresponding class for that implementation,  and instantiating/ executing library's `benchmark()` method.
+
+So, following explanation about our OOP code.
 
 `Serialization.java` continues being main class whicn instantiate each kind of benchmark:
 
 ```java
 public class Serialization {
     public static void main(String[] args) {
-        new JacksonBenchmark().benchmark(15, 20000);
-        new GsonBenchmark().benchmark(15, 20000);
-        new FastjsonBenchmark().benchmark(15, 20000);
+        new JacksonBenchmark().benchmark(150, 200000);
+        new GsonBenchmark().benchmark(150, 200000);
+        new FastjsonBenchmark().benchmark(150, 200000);
     }
 }
 ```
 
-Each type of bechmark inherit from abstarct class `Benchmark` class, there `bechmark()` contructor  method is implemented:, altogether with `mean()` and `runBenchmark()` which is defined as an abstract method that is implemented in each subclass:
+Each type of bechmark inherit from abstract class `Benchmark`. In that class,  `bechmark()` contructor  method is implemented, altogether with `mean()` and `runBenchmark()`, the latter is defined as an abstract method that is implemented in each subclass:
 
 ```java
 public abstract class Benchmark {
@@ -190,7 +199,7 @@ public abstract class Benchmark {
 }
 ```
 
-Then, when a specific implementation is running the constructor, for example for `new JacksonBenchmark().benchmark(15, 20000);` this will execute `runBenchmark()` for that specific library implementation, in this case called `JacksonBenchmark` which is inheriting from `Benchmark` and implementing `runBenchmark()` method according to library specifications:
+Then, when a specific implementation is running the constructor, for example for, for Jackson `new JacksonBenchmark().benchmark(150, 200000);` this will execute `runBenchmark()` for that specific library implementation, in this case called `JacksonBenchmark` which is inheriting from `Benchmark` class and implementing `runBenchmark()` method according to library specifications:
 
 ```java
 public class JacksonBenchmark extends Benchmark {
@@ -206,7 +215,4 @@ public class JacksonBenchmark extends Benchmark {
     }
 }
 ```
-
-
-
-
+Other implementations can be seen on correspondig code project on this same directory. 
