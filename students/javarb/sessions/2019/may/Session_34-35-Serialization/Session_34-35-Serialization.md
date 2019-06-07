@@ -216,6 +216,6 @@ public class JacksonBenchmark extends Benchmark {
 ```
 **Note:** `@Override` annotation specifies we are overriding the specfied method, this is specially useful for a [couple of reasons](https://stackoverflow.com/a/94411/4278635):
 - Compiler will warn us if there is a misspelling in the name of our method, or wrong use of method's parameters.
-- Make code easier to undestand because becomes obvious what that method is doing.
+- Make code easier to understand because becomes obvious what that method is doing.
 
 Other implementations can be seen on correspondig code project on this same directory. 
