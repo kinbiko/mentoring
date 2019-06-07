@@ -219,3 +219,7 @@ public class JacksonBenchmark extends Benchmark {
 - Make code easier to understand because becomes obvious what that method is doing.
 
 Other implementations can be seen on correspondig code project on this same directory. 
+
+#### Part 3 - Blog 
+
+I opened a blog on wordpress to keep this and another technology things https://jaarit.wordpress.com/ 
