@@ -70,9 +70,9 @@ I decided to use: **Gson, Jackson and FastJson ** for my checks. In order to use
 ```java
 dependencies {
 	//...
-    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
-    compile group: 'com.alibaba', name: 'fastjson', version: '1.2.56'
+	compile group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.8'
+	compile group: 'com.alibaba', name: 'fastjson', version: '1.2.56'
 }
 ```
 
@@ -127,9 +127,9 @@ Finally, method on charge of return the mean can be seen following:
 private long mean(List<Long> benchmarks) {
 	long sum = 0;  
 	for (Long benchmark : benchmarks) {
-    	sum += benchmark;
+		sum += benchmark;
 	}
-    return sum / benchmarks.size();
+	return sum / benchmarks.size();
 }
 ```
 
@@ -189,8 +189,7 @@ public abstract class Benchmark {
     protected abstract Long runBenchmark(List<Person> persons);
 
     private long mean(List<Long> benchmarks) {
-        long sum = 0;
-        // benchmarks.forEach(b -> sum +=b); // lambda not to modify things inside. Quick function
+        long sum = 0;       
         for (Long benchmark : benchmarks) {
             sum += benchmark;
         }
@@ -215,4 +214,8 @@ public class JacksonBenchmark extends Benchmark {
     }
 }
 ```
+**Note:** `@Override` annotation specifies we are overriding the specfied method, this is specially useful for a [couple of reasons](https://stackoverflow.com/a/94411/4278635):
+- Compiler will warn us if there is a misspelling in the name of our method, or wrong use of method's parameters.
+- Make code easier to undestand because becomes obvious what that method is doing.
+
 Other implementations can be seen on correspondig code project on this same directory. 
