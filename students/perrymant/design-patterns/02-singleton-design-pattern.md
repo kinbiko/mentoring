@@ -1,6 +1,6 @@
 # Singleton Design Pattern
 
-A `singleton` is a reational pattern that ensures a class only has one instance and provides a global point of access to it.
+A `singleton` is a creational pattern that ensures a class only has one instance and provides a global point of access to it.
 
 Here's it's UML diagram:
 ```
