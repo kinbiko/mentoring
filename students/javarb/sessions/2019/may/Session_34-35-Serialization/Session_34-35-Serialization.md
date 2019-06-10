@@ -12,7 +12,7 @@
 Figure out the most popular libraries for turning JSON strings into POJOs, and for turning POJOs into JSON.
 
 #### Part 2
-Write a simple project to benchmark their performance for serialization and serialization.
+Write a simple project to benchmark their performance for serialization and deserialization.
 
 #### Part 3
 Write a blog post (preferably in English) about what you discovered.
@@ -33,7 +33,7 @@ I found this [Top 5 Libraries for Serialization and Deserialization JSON in Java
 - [Jackson](https://github.com/FasterXML/jackson)
 - [Fastjson](https://github.com/alibaba/fastjson)
 - [Moshi](https://github.com/square/moshi)
-- [Jsoniter](https://github.com/square/moshi)
+- [Jsoniter](http://jsoniter.com/)
 
 I found [this other article](http://dgimenes.com/blog/2014/03/14/java-comparing-json-encoding-libraries.html) when the person who wrote is concluding that Gson and Jackson are best libraries but also is mentioning [JSON.org](http://json.org/) library which [seems to be obsolete now](https://stackoverflow.com/a/7623694). There in JSON.org, we can see these list of links to different Java libraries to handle serialization:
 
@@ -59,8 +59,6 @@ I found [this other article](http://dgimenes.com/blog/2014/03/14/java-comparing-
 - Genson
 - cookjson.
 - progbase.
-
-Stil is a extensive list it's strange Jackson isn't there.
 
 ## Session 34 (21/05/2019 )
 
@@ -219,7 +217,3 @@ public class JacksonBenchmark extends Benchmark {
 - Make code easier to understand because becomes obvious what that method is doing.
 
 Other implementations can be seen on correspondig code project on this same directory. 
-
-#### Part 3 - Blog 
-
-I opened a blog on wordpress to keep this and another technology things https://jaarit.wordpress.com/ 
