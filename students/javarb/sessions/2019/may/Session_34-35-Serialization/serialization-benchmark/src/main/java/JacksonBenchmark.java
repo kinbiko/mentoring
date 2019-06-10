@@ -6,7 +6,7 @@ import java.util.List;
 public class JacksonBenchmark extends Benchmark {
 
     @Override
-    protected Long runBenchmark(List<Person> persons) {
+    protected Long runBenchmark(List<Object> persons) {
         long begin = System.currentTimeMillis();
         try {
             new ObjectMapper().writeValueAsString(persons);
