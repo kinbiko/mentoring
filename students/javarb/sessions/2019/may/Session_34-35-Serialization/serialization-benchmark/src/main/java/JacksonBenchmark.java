@@ -6,10 +6,10 @@ import java.util.List;
 public class JacksonBenchmark extends Benchmark {
 
     @Override
-    protected Long runBenchmark(List<Person> persons) {
+    protected Long runBenchmark(List<Person> people) {
         long begin = System.currentTimeMillis();
         try {
-            new ObjectMapper().writeValueAsString(persons);
+            new ObjectMapper().writeValueAsString(people);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
