@@ -1,11 +1,12 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 2 methods:
  * - Gives all users associated with 1 account
  * - Find all the accounts associated with 1 user
+ * <p>
+ * create maps of user IDs to lists of accounts,
+ * create maps of account IDs to lists of maps,
  */
 public class Cache {
     // The List of users and accounts that are stored in the cache:
