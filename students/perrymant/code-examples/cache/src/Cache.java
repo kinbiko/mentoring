@@ -3,15 +3,19 @@ import java.util.*;
 /**
  * 2 methods:
  * - Gives all users associated with 1 account
- * - Find all the accounts associated with 1 user
- * <p>
+ * - Find all the accounts associated with 1 user.
  * create maps of user IDs to lists of accounts,
- * create maps of account IDs to lists of maps,
+ * create maps of account IDs to lists of users,
  */
 public class Cache {
     // The List of users and accounts that are stored in the cache:
-    private List<User> users = new ArrayList<>();
-    private List<Account> accounts = new ArrayList<>();
+    private List<User> users = new ArrayList<>();        // Replace
+    private List<Account> accounts = new ArrayList<>();     // Replace
+
+    // map of <accountID, List<User>> stored in the cache:
+    private Map<Integer, List<User>> accountIdToUserListHashMap = new HashMap<>();
+    // map of <userID, List<Account>> stored in the cache:
+    private Map<Integer, List<Account>> userIdToAccountListHashMap = new HashMap<>();
 
     // The DB that can also be accessed:
     private final DB db;
@@ -22,7 +26,7 @@ public class Cache {
     }
 
     // Gives all users associated with 1 account:
-    public List<User> getAllUsers(Account account) {
+    List<User> getAllUsers(Account account) {
         // userId values found in cache or DB are added to the following Lists:
         List<Integer> fromCache = new ArrayList<>();
         List<Integer> fromDB = new ArrayList<>();
@@ -59,7 +63,7 @@ public class Cache {
     }
 
     // Find all the accounts associated with 1 user:
-    public List<Account> getAllAccounts(User user) {
+    List<Account> getAllAccounts(User user) {
         // accountId values found in cache or DB are added to the following Lists:
         List<Integer> fromCache = new ArrayList<>();
         List<Integer> fromDB = new ArrayList<>();
@@ -140,7 +144,7 @@ class User {
         return accountIds;
     }
 
-    public void setAccountIds(Set<Integer> accountIds) {
+    void setAccountIds(Set<Integer> accountIds) {
         this.accountIds = accountIds;
     }
 }
@@ -162,7 +166,7 @@ class Account {
         return userIds;
     }
 
-    public void setUserIds(Set<Integer> userIds) {
+    void setUserIds(Set<Integer> userIds) {
         this.userIds = userIds;
     }
 }
