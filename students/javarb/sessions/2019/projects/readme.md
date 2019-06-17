@@ -11,4 +11,4 @@ A project to measure the performance of different serialization libraries and fi
 
 ### Bowling
 
-Project to resolve the [Bowling Kata](http://codingdojo.org/kata/Bowling/), by using TDD. Developed on Session 33.
+Project to resolve the [Bowling Kata](http://codingdojo.org/kata/Bowling/), by using TDD. Developed on Sessions 32 and 33.
