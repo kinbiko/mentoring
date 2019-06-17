@@ -7,7 +7,6 @@ public abstract class Benchmark {
 
         for (int i = 0; i < config.getObjects(); i++) {
             objects.add(i, config.getPojo());
-
         }
 
         List<Long> results = new ArrayList<>();
