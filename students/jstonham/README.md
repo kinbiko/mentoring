@@ -3021,6 +3021,17 @@ While loops will execute again and again as long as the specified condition they
 
 It is the programmer's responsibility to include a variable that will make the condition false so that the loop can be escaped.
 
+In the following example, the while loop will only execute when `i` is less than 10. `i` is set to `0` at the start and with every iteration `i` increases (so the loop can only execute 10 times).
+
+```JS
+var i = 0
+
+while (i < 10) {
+  text += "The number is " + i;
+  i++;
+}
+```
+
 [w3schools](https://www.w3schools.com/js/js_loop_while.asp) has some good examples.
 
 ## Truthy and Falsy Values in JavaScript
