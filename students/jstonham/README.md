@@ -3014,3 +3014,35 @@ function Square(props) {
     );
 }
 ```
+
+## While Loops
+
+While loops will execute again and again as long as the specified condition they contain is true.
+
+It is the programmer's responsibility to include a variable that will make the condition false so that the loop can be escaped.
+
+In the following example, the while loop will only execute when `i` is less than 10. `i` is set to `0` at the start and with every iteration `i` increases (so the loop can only execute 10 times).
+
+```JS
+var i = 0
+
+while (i < 10) {
+  text += "The number is " + i;
+  i++;
+}
+```
+
+[w3schools](https://www.w3schools.com/js/js_loop_while.asp) has some good examples.
+
+## Truthy and Falsy Values in JavaScript
+
+[MDN Web Glossary](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) defines a truthy value as a value that translates to true when evaluated in a Boolean context.
+
+All values are truthy unless they are defined as falsy, with the exception of the following:
+
+- false
+- null
+- undefined
+- 0
+- NaN (not a number)
+- "" (String)
