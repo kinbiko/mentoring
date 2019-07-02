@@ -629,6 +629,8 @@ Command | description
 
 `commit -m "<commit message here>"` | commits the files to the repository. The `-m` flag is needed so you don't open up your shell editor
 
+If you have forgotten a command that you have used in the past in the command line, `Ctrl` and `r` and type any part of the command and the command line will autocomplete it for you.
+
 ## Git Repositories
 
 We create repositories in Git to initialise a version control system and track the changes that are being made to the files within the directory the repository is made from.
@@ -3046,3 +3048,86 @@ All values are truthy unless they are defined as falsy, with the exception of th
 - 0
 - NaN (not a number)
 - "" (String)
+
+## Basic React Component Recap
+
+Write a React component that renders a `<p>` tag with a greeting:
+
+```JS
+import React,{component} from "react"
+
+class Greeting extends React.Component {
+    render () {
+        return <p>
+            Hello
+        </p>
+    }
+}
+```
+
+Iterate on this component to greet someone by name used on a prop of your choosing.
+
+```JS
+import React,{component} from "react"
+
+class Greeting extends React.Component {
+    render () {
+        return <p>
+            Hello{this.prop.name}
+        </p>
+    }
+}
+```
+
+## Cascading Style Sheets (CSS)
+
+Classes in HTML are used to group HTML elements into categories so that CSS knows which groups should have which style.
+
+ID can also be used to target HTML elements for CSS styling, but classes have the advantage of being able to target multiple elements at once.
+
+To find a class in CSS use `.classname`.
+Without the `.` at the beginning, CSS looks for the HTML element tag, e.g. `<p>`.
+To find an element in CSS by its ID, use `#IDname`.
+
+CSS elements that appear crossed out on inspection have been overridden by another CSS element.
+
+In the following example, the SeaGreen background colour of the header has been replaced by DodgerBlue:
+
+```HTML
+<h1 style="background-color:DodgerBlue;">Hello World</h1>
+
+~~<h1 style="background-color:SeaGreen;">Hello World</h1>~~
+```
+
+## Closure and Fat Arrow Function in JavaScript
+
+Closure is where an outer, or parent, function defines a state that is remembered by the inner, or child, function, even after the outer function has closed.
+
+Closure the old way:
+
+```JS
+let that = this;
+
+const moves = history.map(function(step,move)) {
+
+}
+```
+
+Closure the new way (fat arrow function):
+```JS
+let that = this;
+
+const moves = history.map(step,move) => {
+
+}
+```
+
+The `map` function is available for any array in JavaScript.
+
+## Multiple Equals in JavaScript
+
+It is important to be aware of what is happening when you use multiple equals symbols in JavaScript.
+
+Using `==` tries to turn the values on the left hand side into the same type as the right hand side.
+
+Using `===` assigns the right hand side value to the left hand side.
