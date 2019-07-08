@@ -6,7 +6,7 @@ import java.util.List;
 public class GsonBenchmark extends Benchmark {
 
     @Override
-    protected Long runBenchmark(List<Person> people){
+    protected Long runBenchmark(List<Object> people){
         long begin = System.currentTimeMillis();
         new Gson().toJson(people);
         return System.currentTimeMillis() - begin;

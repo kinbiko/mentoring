@@ -60,7 +60,7 @@ I found [this other article](http://dgimenes.com/blog/2014/03/14/java-comparing-
 - cookjson.
 - progbase.
 
-## Session 34 (21/05/2019 )
+## Session 35 (28/05/2019 )
 
 #### Part 2 - Benchmark project
 
