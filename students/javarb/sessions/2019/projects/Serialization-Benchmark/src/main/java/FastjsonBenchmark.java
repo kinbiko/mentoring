@@ -6,7 +6,7 @@ import java.util.List;
 public class FastjsonBenchmark extends Benchmark {
 
     @Override
-    protected Long runBenchmark(List<Person> people) {
+    protected Long runBenchmark(List<Object> people) {
         long begin = System.currentTimeMillis();
         JSON.toJSONString(people);
         return System.currentTimeMillis() - begin;
